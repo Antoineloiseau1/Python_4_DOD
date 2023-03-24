@@ -11,8 +11,11 @@ def generate_id() -> str:
 @dataclass
 class Student:
     """class student"""
-    name: str = field(metadata={"required": True})
-    surname: str = field(metadata={"required": True})
+    name: str = field(init=True)
+    surname: str = field(init=True)
     active: bool = True
-    login: str = "Eagle"
-    id: str = generate_id()
+    login: str = field(init=False)
+    id: str = field(default=generate_id(), init=False)
+
+    def __post_init__(self):
+        self.login = self.surname.capitalize()
