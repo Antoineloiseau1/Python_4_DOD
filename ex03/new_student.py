@@ -18,4 +18,5 @@ class Student:
     id: str = field(default=generate_id(), init=False)
 
     def __post_init__(self):
+        """init login with surname capitalized"""
         self.login = self.surname.capitalize()
